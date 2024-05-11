@@ -3,26 +3,7 @@
 // declare(strict_type=1);
 
 
-class Player
-{
-    private int $level;
 
-    public function __construct(int $level)
-    {
-
-        $this->level = $level;
-    }
-
-    public function getLevel(): int
-    {
-        return $this->level;
-    }
-
-    public function setLevel(int $level): void
-    {
-        $this->level = $level;
-    }
-}
 
 class Encounter
 {
