@@ -11,26 +11,48 @@ class Encounter
     public const RESULT_POSSIBILITIES = [self::RESULT_WINNER, self::RESULT_LOSER, self::RESULT_DRAW];
 
 
-    public static function probabilityAgainst(int $levelPlayerOne, int $againstLevelPlayerTwo)
+    public static function probabilityAgainst(Player $playerOne, Player $playerTwo)
     {
-        return 1 / (1 + (10 ** (($againstLevelPlayerTwo - $levelPlayerOne) / 400)));
+        return 1 / (1 + (10 ** (($playerTwo->getLevel() - $playerOne->getLevel()) / 400)));
     }
 
-    public static function setNewLevel(int &$levelPlayerOne, int $againstLevelPlayerTwo, int $playerOneResult)
+    public static function setNewLevel(Player $levelPlayerOne, Player $levelPlayerTwo, int $playerOneResult)
     {
         if (!in_array($playerOneResult, self::RESULT_POSSIBILITIES)) {
             trigger_error(sprintf('Invalid result. Expected %s', implode(' or ', self::RESULT_POSSIBILITIES)));
         }
 
-        $levelPlayerOne += (int) (32 * ($playerOneResult - self::probabilityAgainst($levelPlayerOne, $againstLevelPlayerTwo)));
+        $levelPlayerOne->setLevel(
+            $levelPlayerOne->getLevel() + round(32 * ($playerOneResult - self::probabilityAgainst($levelPlayerOne, $levelPlayerTwo)))
+        );
+    }
+}
+
+class Player
+{
+    private int $level;
+
+    public function __construct(int $level)
+    {
+        $this->level = $level;
+    }
+
+    public function setLevel($level): void
+    {
+        $this->level = $level;
+    }
+
+    public function getLevel(): int
+    {
+        return $this->level;
     }
 }
 
 
 $encounter = new Encounter();
 
-$greg = 400;
-$jade = 800;
+$greg = new Player(400);
+$jade = new Player(800);
 
 echo sprintf(
     'Greg à %.2f%% chance de gagner face a Jade',
