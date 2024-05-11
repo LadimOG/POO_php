@@ -43,8 +43,8 @@ Encounter::setNewLevel($jade, $greg, Encounter::RESULT_LOSER);
 
 echo sprintf(
     'les niveaux des joueurs ont évolués vers %s pour Greg et %s pour Jade',
-    $greg,
-    $jade
+    $greg->getLevel(),
+    $jade->getLevel()
 );
 
 exit(0);
