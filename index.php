@@ -30,11 +30,19 @@ class Encounter
 
 class Player
 {
-    private int $level;
+
+    public function __construct(private int $level)
+    {
+        $this->level = $level;
+    }
 
 
     public function setLevel(int $level):void
     {
+        if($level < 0)
+        {
+            trigger_error('le niveau doit etre superrieur à 0', E_USER_ERROR);
+        }
         $this->level = $level;
     }
 
@@ -46,12 +54,8 @@ class Player
 
 $encount = new Encounter;
 
-
-$greg = new Player;
-$jade = new Player;
-
-$greg->setLevel(400);
-$jade->setLevel(800);
+$greg = new Player(400);
+$jade = new Player(800);
 
 
 echo sprintf(
