@@ -1,6 +1,6 @@
 <?php
 require_once "Player.php";
-class QueuingPlayer extends Player
+final class QueuingPlayer extends Player
 {   
 
     public function __construct(AbstractPlayer $player, private int $range = 1)
