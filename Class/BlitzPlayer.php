@@ -3,13 +3,13 @@ require_once "Player.php";
 
 class BlitzPlayer extends Player
 {
-    public function __construct(public int $level = 1200, Player $ratio)
+    public function __construct(public string $name = "randomUser", public float $ratio = 1200)
     {
-        parent::__construct($ratio->getRatio());
+        parent::__construct($name, $ratio);
     }
 
-    public function updadeRatio(Player $player):float
+    public function updadeRatio(AbstractPlayer $player, int $result)
     {
-        return $player->getRatio()*4;
+        $this->ratio += 128 * ($result - $this->probabilityAgainst($player));
     }
 }

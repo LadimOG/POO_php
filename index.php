@@ -11,7 +11,7 @@ $jade = new Player('jade', 476);
 $lobby = new Lobby;
 $lobby->addPlayers($greg, $jade);
 
-$blitz = new BlitzPlayer(ratio:$greg);
+$blitz = new BlitzPlayer();
 
-var_dump($blitz->getRatio());
+var_dump($blitz);
 // var_dump($lobby->findOponents($lobby->queuingPlayers[0]));
