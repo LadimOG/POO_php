@@ -1,12 +1,13 @@
 <?php
 namespace App\MatchMaker;
 
+use App\MatchMaker\Interfaces\LobbyInterface;
 use App\MatchMaker\Player\QueuingPlayer;
 use App\MatchMaker\Player\Player;
 
 
 
-class Lobby
+class Lobby implements LobbyInterface
 {
 
     public array $queuingPlayers = [];

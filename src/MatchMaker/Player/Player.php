@@ -2,8 +2,10 @@
 
 namespace App\MatchMaker\Player;
 
+use App\MatchMaker\Player\AbstractPlayer;
+use App\MatchMaker\Interfaces\PlayerInterface;
 
-class Player extends AbstractPlayer
+class Player extends AbstractPlayer implements PlayerInterface
 {
     public function getName(): string
     {
